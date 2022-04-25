@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useContext } from "react";
+import {AunthContext} from "./AuthContext"
 import axios from "axios"
 export const EmployeeDetails = () => {
   const {id}=useParams()
+const {toggleset}=useContext(AunthContext)
 
   const [user,setUser]=useState({})
   
@@ -43,7 +46,9 @@ useEffect(()=>{
       Status: <b className="status">{user.staus}</b>
       Title: <b className="title"> {user.title}</b>
       {/* Show this button only if user is not already terminated (users status is working) */}
-      <button className="fire">Fire Employee</button>
+      <button onClick={(e)=>{
+toggleset(e.target.className,e.target.value)
+      }} className="fire">Fire Employee</button>
       {/* Show this button only if user is not already team lead or terminated */}
       <button className="promote">promote</button>
     </div>

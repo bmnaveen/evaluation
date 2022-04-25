@@ -18,7 +18,7 @@ function App() {
       <Route path="/login" element={<Login></Login>}/>
       <Route path="/employees/:id" element={<ProtectedRoute><EmployeeDetails> </EmployeeDetails></ProtectedRoute>}/>
       <Route path="/admin" element={<ProtectedRoute><EmployeeDetails> </EmployeeDetails></ProtectedRoute>}/>
-
+      <Route path="/logout" element={<Logout></Logout>}/>
       </Routes>
     </div>
   );

@@ -13,7 +13,7 @@ export const Home = () => {
   //   terminated: 0, // inc when user in terminated
   //   promoted: 0,// inc when user in promoted
   //   total_new: 0,// inc when a new user in created
- const {totalemp,togglesetTotalEmp}=useContext(AunthContext)
+ const {over,totalemp,togglesetTotalEmp}=useContext(AunthContext)
   return (
     <>
       <h3 className="welcome">Welcome To employee management system</h3>
@@ -23,13 +23,13 @@ export const Home = () => {
           Total Employees<span className="totalemp">{totalemp}</span>
         </div>
         <div>
-          Total Terminated: <span className="total_terminated"></span>
+          Total Terminated: <span className="total_terminated">{over.fire}</span>
         </div>
         <div>
-          Total Promoted: <span className="total_promoted"></span>
+          Total Promoted: <span className="total_promoted">{over.promote}</span>
         </div>
         <div>
-          Total New: <span className="total_new"></span>
+          Total New: <span className="total_new">{0}</span>
         </div>
       </div>
     </>

@@ -18,7 +18,7 @@ export const Navbar = () => {
       </Link>
       {AuthStatus ?<Link onClick={()=>{
         toggleAuthState()
-        
+        navigate("/logout")
       }} className="nav-logout" to="/logout">
         Logout
       </Link>
