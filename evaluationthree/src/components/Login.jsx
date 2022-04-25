@@ -1,12 +1,15 @@
 import { useContext, useState } from "react";
 import {AunthContext} from "./AuthContext"
 import axios from "axios"
+import { useNavigate } from "react-router-dom";
 export const Login = () => {
   //  use reqres to log user in.
 const [userName,setUserName]=useState("");
 const [userPasscode,setUserPasscode]=useState("");
+const navigate=useNavigate()
 console.log(userName,userPasscode)
 const {AuthStatus,toggleAuthState}=useContext(AunthContext)
+console.log(AuthStatus)
 const userLogin=(e)=>{
 e.preventDefault();
 axios.post('https://reqres.in/api/login', {
@@ -15,6 +18,8 @@ axios.post('https://reqres.in/api/login', {
 })
 .then(function (response) {
   console.log(response.data)
+  toggleAuthState()
+  navigate("/")
 })
 .catch(function (error) {
   console.log(error);

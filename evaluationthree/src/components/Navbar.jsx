@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
-
+import {AunthContext} from "./AuthContext"
+import { useContext } from "react";
 export const Navbar = () => {
+  const {AuthStatus,toggleAuthState}=useContext(AunthContext)
   return (
     <div className="navbar">
       <Link className="nav-home" to="/">
@@ -12,14 +14,16 @@ export const Navbar = () => {
       <Link className="nav-admin" to="/admin">
         Admin
       </Link>
-      {/* Show Either logout or login based on auth context. DO NOT show both */}
-      <Link className="nav-logout" to="/logout">
+      {AuthStatus ?<Link onClick={()=>{
+        toggleAuthState()
+      }} className="nav-logout" to="/logout">
         Logout
       </Link>
-
+       :
       <Link className="nav-login" to="/login" >
         Login
-      </Link>
+      </Link>}
+      
     </div>
   );
 };
