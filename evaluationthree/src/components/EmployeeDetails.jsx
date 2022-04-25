@@ -47,7 +47,7 @@ useEffect(()=>{
       Title: <b className="title"> {user.title}</b>
       {/* Show this button only if user is not already terminated (users status is working) */}
       <button onClick={(e)=>{
-toggleset(e.target.className,e.target.value)
+toggleset(e.target.className,e.target.value+1)
       }} className="fire">Fire Employee</button>
       {/* Show this button only if user is not already team lead or terminated */}
       <button className="promote">promote</button>
