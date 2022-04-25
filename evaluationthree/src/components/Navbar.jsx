@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import {AunthContext} from "./AuthContext"
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 export const Navbar = () => {
   const {AuthStatus,toggleAuthState}=useContext(AunthContext)
+  const navigate=useNavigate()
   return (
     <div className="navbar">
       <Link className="nav-home" to="/">
@@ -16,6 +18,7 @@ export const Navbar = () => {
       </Link>
       {AuthStatus ?<Link onClick={()=>{
         toggleAuthState()
+        
       }} className="nav-logout" to="/logout">
         Logout
       </Link>

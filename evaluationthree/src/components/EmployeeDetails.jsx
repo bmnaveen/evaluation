@@ -4,8 +4,8 @@ import axios from "axios"
 export const EmployeeDetails = () => {
   const {id}=useParams()
 
-  const [user,setUser]=useState()
-
+  const [user,setUser]=useState({})
+  
 useEffect(()=>{
   getUser();
 },[])
@@ -15,6 +15,7 @@ useEffect(()=>{
     // handle success
     console.log(response.data[0].employee_name);
     setUser(response.data[0])
+    
   })
   .catch(function (error) {
     // handle error
@@ -24,17 +25,23 @@ useEffect(()=>{
     // always executed
   });
   }
+ 
+  const task=user.tasks;
   return (
     <div className="user_details">
       
-      <img src={user.img}  className="user_image"  />
-      <h4 className="user_name"></h4>
-      <span className="user_salary">$</span>
+      <img src={user.image}  className="user_image"  />
+      <h4 className="user_name">{user.employee_name}</h4>
+      <span className="user_salary">${user.salary}</span>
       <span className="tasks">
-        <li className="task"></li>
+         {/* {
+         task.map((ll)=>{
+        return<li className="task">{ll}</li>
+        })}
+          */}
       </span>
-      Status: <b className="status"></b>
-      Title: <b className="title"></b>
+      Status: <b className="status">{user.staus}</b>
+      Title: <b className="title"> {user.title}</b>
       {/* Show this button only if user is not already terminated (users status is working) */}
       <button className="fire">Fire Employee</button>
       {/* Show this button only if user is not already team lead or terminated */}
@@ -42,3 +49,16 @@ useEffect(()=>{
     </div>
   );
 };
+// {
+//   "id": 1,
+//       "employee_name": "Kial Bengtsen",
+//       "employee_id": "3ec7a664-9948-4099-9829-a8c75deef782",
+//       "title": "Team Lead",
+//       "salary": 1000,
+//       "image": "http://dummyimage.com/185x177.png/ff4444/ffffff",
+//       "username": "kbengtsen0",
+//       "password": "oJ79pX",
+//       "tasks": ["fixing bugs"],
+//       "status": "working",
+//       "team": "frontend"
+// }
