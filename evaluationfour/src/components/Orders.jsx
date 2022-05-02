@@ -1,8 +1,8 @@
 import { useEffect ,useState} from "react";
 import axios from "axios";
 export const Orders = () => {
- const [status,setStatus]=("Not Accepted");
-
+ 
+const [srt,setSrt]=useState("id")
   useEffect(()=>{
     getData()
   },[])
@@ -21,17 +21,25 @@ export const Orders = () => {
   // always executed
 });  
   }
-  const setData=()=>{
-
-  }
-  const sortData=()=>{
-    
-  }
+ 
+  useEffect(()=>{
+let datar=[...geter].sort((a,b)=>{
+  let x=a[srt];
+  let y=b[srt]
+  if(x>y) return 1;
+  if(x<y) return -1;
+   return 0
+})
+setGeter(datar)
+console.log("yes")
+  },[srt])
   return (
     <div>
       <div>
         <div>
-          <select className="controls" name="progress" id="progress">
+          <select onChange={(e)=>{
+            setSrt(e.target.value)}
+            }  className="controls" name="progress" id="progress">
             <option value="id">ID</option>
             <option value="status">Status</option>
             <option value="cost">Cost</option>
@@ -61,9 +69,7 @@ export const Orders = () => {
               <td className="cost">{e.cost}</td>
               <td className="change-status">
                 {/* Show select dropdown only if status is Not Accepted */}
-                <select onChange={(e)=>{
-setStatus(e.target.value);
-                }} className="changeStatus" name="changeStatus">
+                <select  className="changeStatus" name="changeStatus">
                   <option value="Pending">Pending</option>
                   <option value="In Progress">In Progress</option>
                   <option value="Done">Done</option>
@@ -73,9 +79,7 @@ setStatus(e.target.value);
               <td className="accept">
                 {/* Show this button only if status is Not Accepted */}
                 {/* on change make request to update it in db, and show changed status in table */}
-                <button onClick={()=>{
-                  setData(e.id,)
-                }}>Accept</button>
+                <button >Accept</button>
               </td>
             </tr>
             })
